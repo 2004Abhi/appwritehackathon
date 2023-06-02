@@ -3,7 +3,7 @@ import socketIO from 'socket.io-client';
 import Home from './components/home';
 import ChatPageHOC from './components/chatPageHOC.js';
 
-
+console.log(process.env.REACT_APP_BASE_URL);
 const socket = socketIO.connect(`${process.env.REACT_APP_BASE_URL}`);
 
 function App() {
