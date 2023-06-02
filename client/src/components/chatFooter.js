@@ -3,7 +3,6 @@ import checkPageStatus from "../utils/functions";
 import axios from "axios";
 import { database } from "../config/db";
 import { ID, Permission, Role } from "appwrite";
-import { REACT_APP_COLLECTION_ID, REACT_APP_DATABASE_ID } from "../utils/impdata";
 
 const ChatFooter = ({ socket }) => {
   const [message, setMessage] = useState("");
@@ -36,9 +35,10 @@ const ChatFooter = ({ socket }) => {
         socketID: socket.id,
         timestamp:new Date(Date.now()).toISOString(),
       };
+      // console.log(process.env.REACT_APP_COLLECTION_ID);
       const res = await database.createDocument(
-        REACT_APP_DATABASE_ID,
-        REACT_APP_COLLECTION_ID,
+        process.env.REACT_APP_DATABASE_ID,
+        process.env.REACT_APP_COLLECTION_ID,
         ID.unique(),
         data,
         [Permission.read(Role.any())]

@@ -4,7 +4,6 @@ import ChatBody from "./chatBody";
 import ChatFooter from "./chatFooter";
 import axios from "axios";
 import { database } from "../config/db";
-import { REACT_APP_COLLECTION_ID, REACT_APP_DATABASE_ID } from "../utils/impdata";
 
 const ChatPage = ({ socket }) => {
   const [messages, setMessages] = useState([]);
@@ -15,8 +14,8 @@ const ChatPage = ({ socket }) => {
   useEffect(() => {
     async function fetchData() {
       const data = await database.listDocuments(
-        REACT_APP_DATABASE_ID,
-        REACT_APP_COLLECTION_ID,
+        process.env.REACT_APP_DATABASE_ID,
+        process.env.REACT_APP_COLLECTION_ID,
       );
       setMessages(data.documents);
     }
